@@ -1,2 +1,3 @@
-<manifest package="in.galaxycard.android.utils">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="in.galaxycard.android.utils">
+<uses-permission android:name="android.permission.READ_CONTACTS" />
 </manifest>

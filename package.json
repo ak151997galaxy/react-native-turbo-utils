@@ -1,5 +1,5 @@
 {
-  "name": "react-native-turbo-utils",
+  "name": "@galaxycard/react-native-turbo-utils",
   "version": "0.1.0",
   "description": "TurboModule",
   "main": "build/index.js",
@@ -13,7 +13,9 @@
     "prepublishOnly": "expo-module prepublishOnly",
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
-    "open:android": "open -a \"Android Studio\" example/android"
+    "open:android": "open -a \"Android Studio\" example/android",
+    "typescript": "tsc --noEmit",
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
@@ -28,16 +30,33 @@
   "author": "heroic <amit.kumar@galaxycard.in> (https://github.com/heroic)",
   "license": "MIT",
   "homepage": "https://github.com/galaxycard/react-native-turbo-utils#readme",
-  "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^17.4.1",
+    "@commitlint/config-conventional": "^17.4.0",
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@release-it/conventional-changelog": "^5.1.1",
     "@types/react": "^18.0.25",
     "@types/react-native": "^0.70.6",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "expo-module-scripts": "^3.0.4",
-    "expo-modules-core": "^1.1.0"
+    "expo-modules-core": "^1.1.0",
+    "husky": "^8.0.3",
+    "pod-install": "^0.1.38",
+    "prettier": "^2.8.2",
+    "release-it": "^15.6.0",
+    "typescript": "^4.9.4"
   },
   "peerDependencies": {
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "dependencies": {
+    "@types/jest": "^29.2.5"
+  },
+  "jest": {
+    "preset": "expo-module-scripts"
   }
 }

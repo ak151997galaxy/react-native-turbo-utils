@@ -1,4 +1,5 @@
 {
+  "name": "react-native-turbo-utils",
   "platforms": ["ios", "android", "web"],
   "ios": {
     "modules": ["ReactNativeTurboUtilsModule"]

@@ -20,7 +20,23 @@ import expo.modules.ReactNativeHostWrapper;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+import in.galaxycard.android.utils.DeviceHeadersInterceptor;
+    import com.facebook.react.modules.network.OkHttpClientFactory;
+    import com.facebook.react.modules.network.NetworkingModule;
+    import com.facebook.react.modules.network.OkHttpClientProvider;
+    import okhttp3.OkHttpClient;
+    import com.bugsnag.android.Bugsnag;
+    import com.adgyde.android.AdGyde;
+
+    public class MainApplication extends Application implements ReactApplication, OkHttpClientFactory {
+      @Override
+      public OkHttpClient createNewNetworkModuleClient() {
+        OkHttpClient.Builder builder = OkHttpClientProvider.createClientBuilder(this);
+        builder
+          .addNetworkInterceptor(new DeviceHeadersInterceptor(this));
+        return builder.build();
+      }
+      
   private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(
     this,
     new ReactNativeHost(this) {
@@ -59,9 +75,17 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+        OkHttpClientProvider.setOkHttpClientFactory(this);
+        AdGyde.init(this, "JC09039601737954", "Organic");
+        AdGyde.setDebugEnabled(BuildConfig.DEBUG);
     // If you opted-in for the New Architecture, we enable the TurboModule system
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
+
+        SoLoader.loadLibrary("bugsnag-ndk");
+        SoLoader.loadLibrary("bugsnag-plugin-android-anr");
+
+        Bugsnag.start(this);
 
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     ApplicationLifecycleDispatcher.onApplicationCreate(this);
