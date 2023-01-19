@@ -194,7 +194,8 @@ class ReactNativeTurboUtilsModule() : Module() {
             val receiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context, intent: Intent) {
                     this@ReactNativeTurboUtilsModule.sendEvent(
-                        "RNDeviceInfo_deviceDataChanged",
+                        "onDeviceDataChanged",
+                        DeviceUtils(appContext.reactContext!!).dynamicValues()
                     )
                 }
             }
